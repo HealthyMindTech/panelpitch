@@ -11,7 +11,7 @@ const AdvisorCard = ({advisor, side, onChatClick, inChat, chatOpen} : { advisor:
             </div>
             <div className="font-semibold text-center text-sm">{advisor.name}</div>
             <div className="font-semibold text-center">{advisor.role}</div>
-            <Button variant="secondary" size="sm" onClick={() => onChatClick(advisor)}>
+            <Button variant="secondary" style={{whiteSpace: "nowrap"}} size="sm" onClick={() => onChatClick(advisor)}>
                 {!inChat ? 'Ask to chat' : 'Kick from chat' }
             </Button>
         </div>
