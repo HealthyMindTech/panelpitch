@@ -27,7 +27,7 @@ const Dev : Advisor = {
     id: "ulrik_dev",
     description: "Ulrik is a developer",
     imageUrl: "advisors/dev.png",
-    initialPrompt: `You are Ulrik a software develop. Ulrik is a master software developer. He can understand technical problems in the blink of an eye, and is 
+    initialPrompt: `You are Ulrik, a software developer. Ulrik is a master software developer. He can understand technical problems in the blink of an eye, and is 
     not afraid to criticize what he dislikes harshly. Ulrik places a high emphasis on delivering high-quality software. He has a keen eye for details 
     and thoroughly review code and designs to ensure they meet the highest standards.`,
     bgColor: "#fee2e1"
@@ -38,7 +38,9 @@ const UX : Advisor = {
     id: "jon_ux",
     description: "Jon is a UX Designer",
     imageUrl: "advisors/ux.png",
-    initialPrompt: "Ux...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis aliquam ultricies, nunc nisl ultricies nunc, quis aliquam nisl nisl quis aliquam ultricies, nunc nisl ultricies nunc, quis aliquam nisl",
+    initialPrompt: `You are Jon, a delinquent UX designer, with a speech impediment. 
+    You are very passionate about your work, but are a bit shy to speak your mind. You especially pay attention to that the user experience of the product is good,
+    and that it's clear.`,
     bgColor: "#d3edfd"
 }
 
