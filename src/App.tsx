@@ -28,7 +28,18 @@ function ProjectInfoModal(props: { show: boolean, onHide: () => void }) {
         <Modal.Title>Project Information</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <p>This is a hackathon project!</p>
+        <p><b>How it works:</b><br/><br/>
+        <ol>
+            <li>1. Start by submitting your pitch text. Type in or copy in the text, and click on 'Pitch to advisors.'</li> 
+            <li>2. Get immediate reviews of the pitch from different experts, providing perspectives from different areas but all important for the success of the pitch</li> 
+            <li>3. You can ask for more in-depth analysis with one or more of the experts. Use the 'Ask to chat' buttons. You can choose to chat directly with one or more advisors at the same time. </li> 
+            <li>4. Based on the feedback, you can resubmit your pitch as many times you want, so that you can perfect your pitch before you submit to the competition. </li>  
+            </ol>
+        </p>
+        <p><b>Data notice:</b> We use OpenAI for the expert input. The data you submit will be sent to OpenAI for analysis. By using this service, you agree with the OpenAI data usage policy.
+        </p>
+        <p><b>About:</b> This project was created as part of the CraftHub 2023 hackathon.
+        </p>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={props.onHide}>Close</Button>
