@@ -1,5 +1,6 @@
 interface Advisor {
     name: string;
+    role: string;
     id: string;
     imageUrl?: string;
     description: string;
@@ -15,6 +16,7 @@ interface AdvisorStatus {
 
 const NarcissisticCEO : Advisor = {
     name: "Sven CEO",
+    role: "CEO",
     id: "narcissus",
     description: "Sven is a narcissistic CEO who is obsessed with his own image. He is a very successful CEO and has a lot of money. He is very proud of his success and wants to be",
     imageUrl: "advisors/sven.png",
@@ -23,7 +25,8 @@ const NarcissisticCEO : Advisor = {
 }
 
 const Dev : Advisor = {
-    name: "Dev",
+    name: "Ulrik",
+    role: "Developer",
     id: "ulrik_dev",
     description: "Ulrik is a developer",
     imageUrl: "advisors/dev.png",
@@ -34,7 +37,8 @@ const Dev : Advisor = {
 }
 
 const UX : Advisor = {
-    name: "UX",
+    name: "Jon",
+    role: "UX Designer",
     id: "jon_ux",
     description: "Jon is a UX Designer",
     imageUrl: "advisors/ux.png",
@@ -45,7 +49,8 @@ const UX : Advisor = {
 }
 
 const Pitch : Advisor = {
-    name: "Pitch",
+    name: "Susie",
+    role: "Pitch Expert",
     id: "susie_pitch",
     description: "Susie a pitch expert",
     imageUrl: "advisors/pitch.png",
@@ -55,7 +60,8 @@ const Pitch : Advisor = {
 }
 
 const Market : Advisor = {
-    name: "Market",
+    name: "Jacob",
+    role: "Market",
     id: "jacob_market",
     description: "Jacob is a market analyst",
     imageUrl: "advisors/market.png",

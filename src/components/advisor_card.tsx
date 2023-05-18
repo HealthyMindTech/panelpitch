@@ -8,7 +8,8 @@ const AdvisorCard = ({advisor, side, onChatClick, inChat, chatOpen} : { advisor:
             <div className="">
                 <img src={advisor.imageUrl} alt={advisor.name} className="h-100 aspect-auto mx-auto" style={{width: 64}}/>
             </div>
-            <div className="font-semibold text-center">{advisor.name}</div>
+            <div className="font-semibold text-center text-sm">{advisor.name}</div>
+            <div className="font-semibold text-center">{advisor.role}</div>
             <div className={`flex justify-center`}>
                 <div 
                     className="border-x border-y rounded-lg p-0.5 px-1 bg-gray-100 mb-1 text-sm border-gray-300"
