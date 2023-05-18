@@ -1,5 +1,4 @@
 import React from 'react';
-import Card from 'react-bootstrap/Card';
 import { Advisor } from '../models/advisor';
 
 const AdvisorCard = ({advisor, side, onChatClick} : { advisor: Advisor, side: 'left' | 'right', onChatClick: () => void}) : JSX.Element => {

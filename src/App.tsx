@@ -1,9 +1,8 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
 import { Row, Col, Form } from 'react-bootstrap';
-import { AdvisorCard } from './components/advisor_card';
 import { AdvisorSection } from './components/advisor_section';
-import { NarcissisticCEO, UX, Market, Dev, Pitch } from './models/advisor';
+import { UX, Market, Dev, Pitch } from './models/advisor';
 import './App.scss';
 
 function App() {

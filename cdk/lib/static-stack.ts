@@ -12,11 +12,11 @@ export class StaticStack extends Stack {
 
         const originAccessIdentity = new cloudfront.OriginAccessIdentity(this, 'OriginAccessIdentity');
         const bucket = new s3.Bucket(this, "expert-mind-bucket", {
-            publicReadAccess: true,
-            websiteIndexDocument: "index.html"
+            websiteIndexDocument: "index.html",
+            publicReadAccess: true
+
         });
         bucket.grantRead(originAccessIdentity);
-
 
         const origin = new cloudfrontOrigins.S3Origin(bucket, {
             originAccessIdentity: originAccessIdentity
