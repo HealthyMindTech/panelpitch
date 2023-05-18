@@ -51,7 +51,7 @@ function App() {
             </span>
             
           </div>
-          <Button variant="secondary" size="sm" className="text-sm rounded-circle" onClick={() => setShowProjectInfoModal(true)}>?</Button>
+          <Button style={{width: '28px'}} variant="secondary" size="sm" className="text-sm rounded-circle" onClick={() => setShowProjectInfoModal(true)}>?</Button>
         </div>
         <Advisors advisorStatus={advisorStatus} />
         <PitchForm advisors={ADVISORS} setAdvisorStatus={setAdvisorStatus} />
