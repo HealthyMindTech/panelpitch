@@ -1,2 +1,22 @@
+$primary: #0a8dde;
+$btn-primary-color: #fff;
+
 // Import Bootstrap and its default variables
 @import '~bootstrap/scss/bootstrap.scss';
+
+
+.btn-primary {
+    color: #fff; 
+    border-radius: 1rem; 
+}
+
+.btn-secondary {
+    background: #ffffffd1;
+    color: #111;
+    border-radius: 1rem;
+    font-size: 12px;
+}
+
+.form-control {
+    border-radius: 1rem;
+}

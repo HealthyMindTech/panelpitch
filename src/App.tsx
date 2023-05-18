@@ -19,9 +19,21 @@ function App() {
 
   return (
     <div className="App">
+      <div className="flex w-full h-1">
+        <div className="w-1/4" style={{background: "#0a8dde"}}></div>
+        <div className="w-1/4" style={{background: "#e80f08"}}></div>
+        <div className="w-1/4" style={{background: "#16cf70"}}></div>
+        <div className="w-1/4" style={{background: "#dfb304"}}></div>
+      </div>
       <Container className="min-h-screen flex flex-col">
-        <div className="bg-white text-black p-2 flex justify-between items-center">
-          <div className="text-lg font-bold justify-center text-center justify-center w-full">HACKATHON ADVISORY BOARD</div>
+        <div className="bg-white text-black p-2 pt-1.5 flex justify-between items-center">
+          <div className="text-4xl text-center justify-center w-full">
+            PanelPit.ch 
+            <span className="font-semibold text-sm ml-3">
+            HACKATHON ADVISORY BOARD
+            </span>
+            
+          </div>
           <Button variant="primary" size="sm" className="text-sm">info</Button>
         </div>
         <Advisors advisorStatus={advisorStatus} />

@@ -54,7 +54,7 @@ const PitchForm = ({advisors, setAdvisorStatus}: { advisors: Array<Advisor>, set
     return (
     <Form className="text-right b-0 flex-grow border-x border-y border-gray-300 rounded-2xl p-2 px-4 mt-2 mb-4" onSubmit={onSubmit}>
         <Form.Group className="mb-3 relative" controlId="pitch">
-            <Form.Control as="textarea" rows={10} autoFocus className=""
+            <Form.Control as="textarea" rows={10} autoFocus className="rounded-2xl"
                 value={pitch} onChange={handlePitchChange}
             />
             <div className="flex justify-center h-60 items-center absolute top-0 w-100 pointer-events-none">
