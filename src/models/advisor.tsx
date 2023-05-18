@@ -9,6 +9,12 @@ interface Advisor {
     introductionForPitchJudgement: string;
 }
 
+const USER_ID = 'user';
+
+interface ChatMessage {
+    advisorId: string;
+    message: string;
+}
 interface AdvisorStatus {
     status: 'loading' | 'ready' | 'error';
     advisorId: string;
@@ -78,4 +84,6 @@ const Market : Advisor = {
 
 const ADVISORS = [Dev, UX, Market, Pitch];
 
-export { type Advisor, type AdvisorStatus, ADVISORS, NarcissisticCEO, Dev, UX, Market, Pitch}
+const ADVISOR_MAP: Record<string, Advisor> = Object.fromEntries(ADVISORS.map((advisor) => [advisor.id, advisor]));
+
+export { type Advisor, type AdvisorStatus, type ChatMessage, ADVISOR_MAP, USER_ID, ADVISORS, NarcissisticCEO, Dev, UX, Market, Pitch}
