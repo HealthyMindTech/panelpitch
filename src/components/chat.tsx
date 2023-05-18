@@ -110,7 +110,7 @@ const Chat = ({ chatParticipants } : { chatParticipants: Advisor[] }): JSX.Eleme
             <div className="flex justify-center w-100">
                 <div className="w-100 mt-2">
                     <div className="flex justify-between border-x border-y border-gray-300 rounded-xl overflow-clip">
-                        <input type="text" className="w-full p-2 px-4" />
+                        <input type="text" className="w-full p-2 px-4" autoFocus />
                         <button className="bg-blue-500 text-white p-2 pt-0"><span className="material-symbols-outlined relative top-1.5 mr-1">send</span>Send</button>
                     </div>
                 </div>
