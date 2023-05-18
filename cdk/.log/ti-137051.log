@@ -1,0 +1,35 @@
+[20:53:57.266] Global cache location '/home/troels/.cache/typescript/4.7', safe file path '/home/troels/.emacs.d/.cache/lsp/npm/typescript/lib/node_modules/typescript/lib/typingSafeList.json', types map path /home/troels/.emacs.d/.cache/lsp/npm/typescript/lib/node_modules/typescript/lib/typesMap.json
+[20:53:57.266] Processing cache location '/home/troels/.cache/typescript/4.7'
+[20:53:57.266] Trying to find '/home/troels/.cache/typescript/4.7/package.json'...
+[20:53:57.267] Loaded content of '/home/troels/.cache/typescript/4.7/package.json': {"private":true,"dependencies":{"types-registry":"^0.1.631"}}
+[20:53:57.267] Loaded content of '/home/troels/.cache/typescript/4.7/package-lock.json'
+[20:53:57.267] Finished processing cache location '/home/troels/.cache/typescript/4.7'
+[20:53:57.267] Process id: 137058
+[20:53:57.267] NPM location: /usr/bin/npm (explicit '--npmLocation' not  provided)
+[20:53:57.267] validateDefaultNpmLocation: false
+[20:53:57.268] Npm config file: /home/troels/.cache/typescript/4.7/package.json
+[20:53:57.268] Updating types-registry npm package...
+[20:53:57.268] Exec: /usr/bin/npm install --ignore-scripts types-registry@latest
+[20:53:58.576]     Succeeded. stdout:
+    
+    up to date, audited 2 packages in 851ms
+
+found 0 vulnerabilities
+
+[20:53:58.576] Updated types-registry npm package
+[21:29:39.340] Got install request {"projectName":"/dev/null/inferredProject1*","fileNames":[],"compilerOptions":{"module":1,"target":3,"jsx":1,"allowJs":true,"allowSyntheticDefaultImports":true,"allowNonTsExtensions":true,"noEmitForJsFiles":true},"typeAcquisition":{"enable":true,"include":[],"exclude":[]},"unresolvedImports":[],"projectRootPath":"/home/troels/src/halcyon/cdk/lib","kind":"discover"}
+[21:29:39.352] Loaded safelist from types map file '/home/troels/.emacs.d/.cache/lsp/npm/typescript/lib/node_modules/typescript/lib/typesMap.json'
+[21:29:39.353] Explicitly included types: []
+[21:29:39.353] Inferred typings from unresolved imports: []
+[21:29:39.353] Result: {"cachedTypingPaths":[],"newTypingNames":[],"filesToWatch":["/home/troels/src/halcyon/cdk/lib/bower_components","/home/troels/src/halcyon/cdk/lib/node_modules"]}
+[21:29:39.353] Finished typings discovery: {"cachedTypingPaths":[],"newTypingNames":[],"filesToWatch":["/home/troels/src/halcyon/cdk/lib/bower_components","/home/troels/src/halcyon/cdk/lib/node_modules"]}
+[21:29:39.353] DirectoryWatcher:: Added:: WatchInfo: /home/troels/src/halcyon/cdk/lib/bower_components
+[21:29:39.354] DirectoryWatcher:: Added:: WatchInfo: /home/troels/src/halcyon/cdk/lib/bower_components 1 undefined Project: /dev/null/inferredProject1* watcher already invoked: false
+[21:29:39.355] Elapsed:: 1.1564390007406473ms DirectoryWatcher:: Added:: WatchInfo: /home/troels/src/halcyon/cdk/lib/bower_components 1 undefined Project: /dev/null/inferredProject1* watcher already invoked: false
+[21:29:39.355] DirectoryWatcher:: Added:: WatchInfo: /home/troels/src/halcyon/cdk/lib/node_modules
+[21:29:39.355] DirectoryWatcher:: Added:: WatchInfo: /home/troels/src/halcyon/cdk/lib/node_modules 1 undefined Project: /dev/null/inferredProject1* watcher already invoked: false
+[21:29:39.355] Elapsed:: 0.06972000002861023ms DirectoryWatcher:: Added:: WatchInfo: /home/troels/src/halcyon/cdk/lib/node_modules 1 undefined Project: /dev/null/inferredProject1* watcher already invoked: false
+[21:29:39.355] Sending response:
+    {"projectName":"/dev/null/inferredProject1*","typeAcquisition":{"enable":true,"include":[],"exclude":[]},"compilerOptions":{"module":1,"target":3,"jsx":1,"allowJs":true,"allowSyntheticDefaultImports":true,"allowNonTsExtensions":true,"noEmitForJsFiles":true},"typings":[],"unresolvedImports":[],"kind":"action::set"}
+[21:29:39.355] Response has been sent.
+[21:29:39.355] No new typings were requested as a result of typings discovery

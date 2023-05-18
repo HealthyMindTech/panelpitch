@@ -1,0 +1,19 @@
+[00:22:25.560] Global cache location '/home/troels/.cache/typescript/4.7', safe file path '/home/troels/.emacs.d/.cache/lsp/npm/typescript/lib/node_modules/typescript/lib/typingSafeList.json', types map path /home/troels/.emacs.d/.cache/lsp/npm/typescript/lib/node_modules/typescript/lib/typesMap.json
+[00:22:25.560] Processing cache location '/home/troels/.cache/typescript/4.7'
+[00:22:25.560] Trying to find '/home/troels/.cache/typescript/4.7/package.json'...
+[00:22:25.562] Loaded content of '/home/troels/.cache/typescript/4.7/package.json': {"private":true,"dependencies":{"types-registry":"^0.1.625"}}
+[00:22:25.562] Loaded content of '/home/troels/.cache/typescript/4.7/package-lock.json'
+[00:22:25.562] Finished processing cache location '/home/troels/.cache/typescript/4.7'
+[00:22:25.563] Process id: 46622
+[00:22:25.563] NPM location: /usr/bin/npm (explicit '--npmLocation' not  provided)
+[00:22:25.563] validateDefaultNpmLocation: false
+[00:22:25.563] Npm config file: /home/troels/.cache/typescript/4.7/package.json
+[00:22:25.563] Updating types-registry npm package...
+[00:22:25.563] Exec: /usr/bin/npm install --ignore-scripts types-registry@latest
+[00:22:26.747]     Succeeded. stdout:
+    
+    changed 1 package, and audited 2 packages in 694ms
+
+found 0 vulnerabilities
+
+[00:22:26.747] Updated types-registry npm package

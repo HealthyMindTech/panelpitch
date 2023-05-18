@@ -1,0 +1,65 @@
+Info 0    [17:25:11.176] Starting TS Server
+Info 1    [17:25:11.176] Version: 4.7.4
+Info 2    [17:25:11.176] Arguments: /usr/bin/node /home/troels/.emacs.d/.cache/lsp/npm/typescript/lib/node_modules/typescript/lib/tsserver.js --logFile /home/troels/src/halcyon/cdk/.log/tsserver.log --logVerbosity info --cancellationPipeName /tmp/155990f9db185109cc5d91ce158ac046/tscancellation*
+Info 3    [17:25:11.176] Platform: linux NodeVersion: 19 CaseSensitive: true
+Info 4    [17:25:11.176] ServerMode: undefined syntaxOnly: false hasUnknownServerMode: undefined
+Info 5    [17:25:11.189] Format host information updated
+Info 6    [17:25:11.257] Search path: /home/troels/src/halcyon/cdk/lib
+Info 7    [17:25:11.258] For info: /home/troels/src/halcyon/cdk/lib/ecs-stack.ts :: Config file name: /home/troels/src/halcyon/cdk/tsconfig.json
+Info 8    [17:25:11.258] Creating configuration project /home/troels/src/halcyon/cdk/tsconfig.json
+Info 9    [17:25:11.276] Config: /home/troels/src/halcyon/cdk/tsconfig.json : {
+ "rootNames": [
+  "/home/troels/src/halcyon/cdk/bin/cdk.ts",
+  "/home/troels/src/halcyon/cdk/lib/config.ts",
+  "/home/troels/src/halcyon/cdk/lib/ecs-stack.ts",
+  "/home/troels/src/halcyon/cdk/lib/lambda-stack.ts",
+  "/home/troels/src/halcyon/cdk/lib/static-stack.ts",
+  "/home/troels/src/halcyon/cdk/test/cdk.test.ts"
+ ],
+ "options": {
+  "target": 5,
+  "module": 1,
+  "lib": [
+   "lib.es2018.d.ts"
+  ],
+  "declaration": true,
+  "strict": true,
+  "noImplicitAny": true,
+  "strictNullChecks": true,
+  "noImplicitThis": true,
+  "alwaysStrict": true,
+  "noUnusedLocals": false,
+  "noUnusedParameters": false,
+  "noImplicitReturns": true,
+  "noFallthroughCasesInSwitch": false,
+  "inlineSourceMap": true,
+  "inlineSources": true,
+  "experimentalDecorators": true,
+  "strictPropertyInitialization": false,
+  "typeRoots": [
+   "/home/troels/src/halcyon/cdk/node_modules/@types"
+  ],
+  "configFilePath": "/home/troels/src/halcyon/cdk/tsconfig.json"
+ }
+}
+Info 10   [17:25:11.611] Starting updateGraphWorker: Project: /home/troels/src/halcyon/cdk/tsconfig.json
+Info 11   [17:25:13.825] Finishing updateGraphWorker: Project: /home/troels/src/halcyon/cdk/tsconfig.json Version: 1 structureChanged: true structureIsReused:: Not Elapsed: 2213.890469000209ms
+Info 12   [17:25:13.825] Project '/home/troels/src/halcyon/cdk/tsconfig.json' (Configured)
+Info 13   [17:25:13.825] 	Files (1570)
+
+Info 14   [17:25:13.825] -----------------------------------------------
+Info 15   [17:25:14.872] DirectoryWatcher:: Triggered with /home/troels/src/halcyon/cdk/.log/ti-19846.log 0:: WatchInfo: /home/troels/src/halcyon/cdk 1 undefined Config: /home/troels/src/halcyon/cdk/tsconfig.json WatchType: Wild card directory
+Info 16   [17:25:14.873] Project: /home/troels/src/halcyon/cdk/tsconfig.json Detected file add/remove of non supported extension: /home/troels/src/halcyon/cdk/.log/ti-19846.log
+Info 17   [17:25:14.873] Elapsed:: 1.1216869996860623ms DirectoryWatcher:: Triggered with /home/troels/src/halcyon/cdk/.log/ti-19846.log 0:: WatchInfo: /home/troels/src/halcyon/cdk 1 undefined Config: /home/troels/src/halcyon/cdk/tsconfig.json WatchType: Wild card directory
+Info 18   [18:08:25.393] Starting updateGraphWorker: Project: /home/troels/src/halcyon/cdk/tsconfig.json
+Info 19   [18:08:25.423] Finishing updateGraphWorker: Project: /home/troels/src/halcyon/cdk/tsconfig.json Version: 2 structureChanged: false structureIsReused:: Completely Elapsed: 29.527976999990642ms
+Info 20   [18:08:25.423] Different program with same set of files
+Info 21   [18:08:25.424] Starting updateGraphWorker: Project: /home/troels/src/halcyon/cdk/tsconfig.json
+Info 22   [18:08:25.449] Finishing updateGraphWorker: Project: /home/troels/src/halcyon/cdk/tsconfig.json Version: 3 structureChanged: false structureIsReused:: Completely Elapsed: 24.943580999970436ms
+Info 23   [18:08:25.449] Different program with same set of files
+Info 24   [18:08:29.212] Starting updateGraphWorker: Project: /home/troels/src/halcyon/cdk/tsconfig.json
+Info 25   [18:08:29.232] Finishing updateGraphWorker: Project: /home/troels/src/halcyon/cdk/tsconfig.json Version: 4 structureChanged: false structureIsReused:: Completely Elapsed: 19.301612000912428ms
+Info 26   [18:08:29.232] Different program with same set of files
+Info 27   [18:08:29.610] Starting updateGraphWorker: Project: /home/troels/src/halcyon/cdk/tsconfig.json
+Info 28   [18:08:29.622] Finishing updateGraphWorker: Project: /home/troels/src/halcyon/cdk/tsconfig.json Version: 5 structureChanged: false structureIsReused:: Completely Elapsed: 12.290011999197304ms
+Info 29   [18:08:29.622] Different program with same set of files
