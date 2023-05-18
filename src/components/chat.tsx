@@ -1,4 +1,4 @@
-import { NarcissisticCEO } from '../models/advisor';
+import { Advisor, NarcissisticCEO } from '../models/advisor';
 
 const testMessages = [
     {
@@ -52,11 +52,21 @@ const testMessages = [
 ]
 
 
-const Chat = () : JSX.Element => {
+
+const Chat = ({ chatParticipants } : { chatParticipants: Advisor[] }): JSX.Element => {
     return (
         <div className="w-100 flex flex-col h-full">
             <div className="flex justify-center">
                 <div className="font-semibold">Chat title</div>
+                <div>
+                    Participant names:
+                    {chatParticipants.map((participant) => {
+                        return (
+                            <span>{participant.name}</span>
+                        );
+                    })}
+
+                </div>
             </div>
             {/* Chat messages area */}
             {/* If its from the advisors, put on left, if its user, right. */}
