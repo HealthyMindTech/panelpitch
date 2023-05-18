@@ -28,5 +28,9 @@ function queryAdvisors(advisors: Array<Advisor>, prompt: string, handleAdvisor: 
 
 function chatPrompt(activeAdvisors: Array<Advisor>, pitch: string, chatTilNow: string) {
     
+    const advisorPrompts = activeAdvisors.map(advisor => `${advisor.name}: ${advisor.description}`).join("\n");
+    return `${advisorPrompts}\n\n${chatTilNow}\n\n${pitch}\n\n`;
 }
+
+
 export { queryAdvisor, queryAdvisors }
