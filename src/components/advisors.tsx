@@ -1,23 +1,16 @@
-import React, { useRef, useEffect }  from 'react';
-import { wrapGrid } from 'animate-css-grid'
-import { Advisor } from '../models/advisor';
+import React, { useRef }  from 'react';
+import { Advisor, AdvisorStatus } from '../models/advisor';
 import { UX, Market, Dev, Pitch } from '../models/advisor';
 import { AdvisorCard } from './advisor_card';
 import { AdvisorSpeechBubble } from './advisor_speech_bubble';
 
 
-const Advisors = () : JSX.Element => {
+const Advisors = ({advisorStatus}: {advisorStatus: Record<string, AdvisorStatus>}) : JSX.Element => {
     // Which of the chats are expanded
     const [expanded, setExpanded] = React.useState<number>(-1); // -1 means no chat is expanded
     const [chatParticipants, setChatParticipants] = React.useState<Advisor[]>([]);
 
     const gridRef = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        if (gridRef.current) {
-            // wrapGrid(gridRef.current, { duration: 800 });
-        }
-    }, [gridRef.current]);
 
     const advisors = [UX, Market, Dev, Pitch];
 
@@ -41,11 +34,11 @@ const Advisors = () : JSX.Element => {
                 <AdvisorCard advisor={UX} side='left' onChatClick={handleChatClick} />
             </div>
             {/* if collapsed: 1x5, if expanded, 2x10 */}
-            <div className={expanded === -1 ? "col-span-3 mr-5" : expanded === 0 ? "col-start-2 row-start-1 row-span-2 col-span-6" : "hidden"}>
-                <AdvisorSpeechBubble text="Hello" expanded={expanded === 0} closeChat={() => {setExpanded(-1)}} chatParticipants={chatParticipants}/>
+            <div className={expanded === -1 ? "col-span-3" : expanded === 0 ? "col-start-2 row-start-1 row-span-2 col-span-6" : "hidden"}>
+                <AdvisorSpeechBubble text={advisorStatus[UX.id].message} expanded={expanded === 0} closeChat={() => {setExpanded(-1)}} chatParticipants={chatParticipants}/>
             </div>
-            <div className={expanded === -1 ? "col-span-3 ml-5" : expanded === 1 ? "col-start-2 row-start-1 row-span-2 col-span-6" : "hidden"}>
-                <AdvisorSpeechBubble text="Hello" expanded={expanded === 1} closeChat={() => {setExpanded(-1)}} chatParticipants={chatParticipants}/>
+            <div className={expanded === -1 ? "col-span-3" : expanded === 1 ? "col-start-2 row-start-1 row-span-2 col-span-6" : "hidden" }>
+                <AdvisorSpeechBubble text={advisorStatus[Pitch.id].message} expanded={expanded === 1} closeChat={() => {setExpanded(-1)}} chatParticipants={chatParticipants}/>
             </div>
             <div>
                 <AdvisorCard advisor={Pitch} side='right' onChatClick={handleChatClick} />
@@ -53,11 +46,11 @@ const Advisors = () : JSX.Element => {
             <div>
                 <AdvisorCard advisor={Dev} side='left' onChatClick={handleChatClick} />
             </div>
-            <div className={expanded === -1 ? "col-span-3 mr-5" : expanded === 2 ? "col-start-2 row-start-1 row-span-2 col-span-6" : "hidden"}>
-                <AdvisorSpeechBubble text="Hello" expanded={expanded === 2} closeChat={() => {setExpanded(-1)}} chatParticipants={chatParticipants}/>
+            <div className={expanded === -1 ? "col-span-3" : expanded === 2 ? "col-start-2 row-start-1 row-span-2 col-span-6" : "hidden" }>
+                <AdvisorSpeechBubble text={advisorStatus[Dev.id].message} expanded={expanded === 2} closeChat={() => {setExpanded(-1)}} chatParticipants={chatParticipants}/>
             </div>
-            <div className={expanded === -1 ? "col-span-3 ml-5" : expanded === 3 ? "col-start-2 row-start-1 row-span-2 col-span-6" : "hidden"}>
-                <AdvisorSpeechBubble text="Hello" expanded={expanded === 3} closeChat={() => {setExpanded(-1)}} chatParticipants={chatParticipants}/>
+            <div className={expanded === -1 ? "col-span-3" : expanded === 3 ? "col-start-2 row-start-1 row-span-2 col-span-6" : "hidden" }>
+                <AdvisorSpeechBubble text={advisorStatus[Market.id].message} expanded={expanded === 3} closeChat={() => {setExpanded(-1)}} chatParticipants={chatParticipants}/>
             </div>
             <div>
                 <AdvisorCard advisor={Market} side='right' onChatClick={handleChatClick} />

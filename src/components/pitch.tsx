@@ -1,9 +1,11 @@
 import { Form, Button } from 'react-bootstrap';
 import React from 'react';
-import { Advisor } from '../models/advisor';
+import { Advisor, AdvisorStatus } from '../models/advisor';
 import { queryAdvisors } from '../services/openai';
 
-const PitchForm = ({advisors}: { advisors: Array<Advisor>}): JSX.Element => {
+type SetAdvisorStatusType = React.Dispatch<React.SetStateAction<Record<string, AdvisorStatus>>>;
+
+const PitchForm = ({advisors, setAdvisorStatus}: { advisors: Array<Advisor>, setAdvisorStatus: SetAdvisorStatusType }): JSX.Element => {
     const [pitch, setPitch] = React.useState<string>("");
 
     const handlePitchChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -11,16 +13,43 @@ const PitchForm = ({advisors}: { advisors: Array<Advisor>}): JSX.Element => {
     };
 
     const onSubmit = React.useCallback((event: React.FormEvent<HTMLFormElement>) => {
-        console.log("Hello");
         event.preventDefault();
         if (pitch === "") {
             return;
         }
 
-        queryAdvisors(advisors, pitch).then((response) => {
-            console.log(response);
+        const handleAdvisor = (advisor: Advisor, response: string) => {
+            setAdvisorStatus((prevAdvisorStatus) => {
+                const newAdvisorStatus: Record<string, AdvisorStatus> = {};
+                for (const currentAdvisor of advisors) {
+                    newAdvisorStatus[currentAdvisor.id] = {
+                        status: 'ready',
+                        advisorId: currentAdvisor.id,
+                        message: currentAdvisor.id === advisor.id ? response : prevAdvisorStatus[currentAdvisor.id].message,
+                    };
+                }
+                return newAdvisorStatus;
+            });
+        };
+
+        setAdvisorStatus(
+            (prevAdvisorStatus) => {
+                const newAdvisorStatus: Record<string, AdvisorStatus> = {};
+                for (const advisor of advisors) {
+                    newAdvisorStatus[advisor.id] = {
+                        status: 'loading',
+                        advisorId: advisor.id,
+                        message: prevAdvisorStatus[advisor.id].message,
+                    };
+                }
+                return newAdvisorStatus;
         });
-    }, [pitch, advisors]);
+
+
+        queryAdvisors(advisors, pitch, handleAdvisor);
+        
+    }, [pitch, advisors, setAdvisorStatus]);
+    
 
     return (
     <Form className="text-right b-0 flex-grow border-x border-y border-gray-300 rounded-2xl p-2 px-4 mt-2 mb-4" onSubmit={onSubmit}>
@@ -43,4 +72,4 @@ const PitchForm = ({advisors}: { advisors: Array<Advisor>}): JSX.Element => {
     </Form>);
 }
 
-export { PitchForm }
+export { PitchForm };

@@ -15,9 +15,12 @@ async function queryAdvisor(advisor: Advisor, pitch: string): Promise<string> {
     return queryOpenAI(prompt);
 }
 
-async function queryAdvisors(advisors: Array<Advisor>, prompt: string): Promise<Array<string>> {
-    const advisorPromises = advisors.map(advisor => queryAdvisor(advisor, prompt));
-    return Promise.all(advisorPromises);
+function queryAdvisors(advisors: Array<Advisor>, prompt: string, handleAdvisor: (advisor: Advisor, response: string) => void): void {
+    advisors.map(advisor => {
+        const promise = queryAdvisor(advisor, prompt);
+        return promise.then(response => handleAdvisor(advisor, response));
+    });
+    
 }
 
 export { queryAdvisor, queryAdvisors }
