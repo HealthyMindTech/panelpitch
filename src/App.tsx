@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container';
 import { Row, Col, Form } from 'react-bootstrap';
 import { AdvisorCard } from './components/advisor_card';
 import { AdvisorSection } from './components/advisor_section';
-import { NarcissisticCEO } from './models/advisor';
+import { NarcissisticCEO, UX, Market, Dev, Pitch } from './models/advisor';
 import './App.scss';
 
 function App() {
@@ -18,12 +18,12 @@ function App() {
       <Container className="min-h-screen flex flex-col">
         <Row>
           <Col xs={6}>
-            <AdvisorSection advisor={NarcissisticCEO} side='left' />
-            <AdvisorSection advisor={NarcissisticCEO} side='left' />
+            <AdvisorSection advisor={UX} side='left' />
+            <AdvisorSection advisor={Dev} side='left' />
           </Col>
           <Col xs={6}>
-            <AdvisorSection advisor={NarcissisticCEO} side='right' />
-            <AdvisorSection advisor={NarcissisticCEO} side='right' />
+            <AdvisorSection advisor={Pitch} side='right' />
+            <AdvisorSection advisor={Market} side='right' />
           </Col>
         </Row>
         <Form className="b-0 flex-grow border-x border-y border-gray-300 rounded-2xl p-2 px-4">
