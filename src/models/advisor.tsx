@@ -48,4 +48,6 @@ const Market : Advisor = {
     bgColor: "#fef3c7"
 }
 
-export { type Advisor, NarcissisticCEO, Dev, UX, Market, Pitch}
+const ADVISORS = [Dev, UX, Market, Pitch];
+
+export { type Advisor, ADVISORS, NarcissisticCEO, Dev, UX, Market, Pitch}

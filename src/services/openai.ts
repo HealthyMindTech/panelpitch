@@ -12,9 +12,7 @@ async function queryAdvisor(advisor: Advisor, pitch: string): Promise<string> {
     const prompt = `You are ${advisor.name}, ${advisor.description}. ${advisor.initialPrompt}.\n
     As an advisor you are advised to give your advice on the following pitch:\n\n${pitch}`;
 
-    return fetch(OPENAI_SERVICE + "?prompt=" + encodeURIComponent(prompt))
-        .then(response => response.json())
-        .then(data => data.choices[0].text);
+    return queryOpenAI(prompt);
 }
 
 async function queryAdvisors(advisors: Array<Advisor>, prompt: string): Promise<Array<string>> {
