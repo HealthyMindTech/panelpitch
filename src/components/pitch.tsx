@@ -53,7 +53,7 @@ const PitchForm = ({advisors, setAdvisorStatus}: { advisors: Array<Advisor>, set
 
     return (
     <Form className="text-right b-0 flex-grow mt-2 mb-4" onSubmit={onSubmit}>
-        <Form.Group className="mb-3 relative" controlId="pitch">
+        <Form.Group className="mb-1.5 relative" controlId="pitch">
             <Form.Control as="textarea" rows={10} autoFocus className="rounded-2xl"
                 value={pitch} onChange={handlePitchChange}
             />
