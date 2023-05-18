@@ -1,15 +1,15 @@
 import React, { useRef }  from 'react';
-import { Advisor, AdvisorStatus } from '../models/advisor';
+import { ChatMessage, Advisor, AdvisorStatus } from '../models/advisor';
 import { UX, Market, Dev, Pitch } from '../models/advisor';
 import { AdvisorCard } from './advisor_card';
 import { AdvisorSpeechBubble } from './advisor_speech_bubble';
 
 
-const Advisors = ({advisorStatus}: {advisorStatus: Record<string, AdvisorStatus>}) : JSX.Element => {
+const Advisors = ({advisorStatus, pitch}: {advisorStatus: Record<string, AdvisorStatus>, pitch: string}) : JSX.Element => {
     // Which of the chats are expanded
     const [expanded, setExpanded] = React.useState<number>(-1); // -1 means no chat is expanded
     const [chatParticipants, setChatParticipants] = React.useState<Advisor[]>([]);
-
+    const [chatMessages, setChatMessages] = React.useState<ChatMessage[]>([]);
     const gridRef = useRef<HTMLDivElement>(null);
 
     const advisors = [UX, Market, Dev, Pitch];
@@ -35,10 +35,10 @@ const Advisors = ({advisorStatus}: {advisorStatus: Record<string, AdvisorStatus>
             </div>
             {/* if collapsed: 1x5, if expanded, 2x10 */}
             <div className={expanded === -1 ? "col-span-3" : expanded === 0 ? "col-start-2 row-start-1 row-span-2 col-span-6" : "hidden"}>
-                <AdvisorSpeechBubble status={advisorStatus[UX.id].status} text={advisorStatus[UX.id].message} expanded={expanded === 0} closeChat={() => {setExpanded(-1)}} chatParticipants={chatParticipants}/>
+                <AdvisorSpeechBubble pitch={pitch} chatMessages={chatMessages} setChatMessages={setChatMessages} status={advisorStatus[UX.id].status} text={advisorStatus[UX.id].message} expanded={expanded === 0} closeChat={() => {setExpanded(-1)}} chatParticipants={chatParticipants}/>
             </div>
             <div className={expanded === -1 ? "col-span-3" : expanded === 1 ? "col-start-2 row-start-1 row-span-2 col-span-6" : "hidden" }>
-                <AdvisorSpeechBubble status={advisorStatus[Pitch.id].status} text={advisorStatus[Pitch.id].message} expanded={expanded === 1} closeChat={() => {setExpanded(-1)}} chatParticipants={chatParticipants}/>
+                <AdvisorSpeechBubble pitch={pitch} chatMessages={chatMessages} setChatMessages={setChatMessages} status={advisorStatus[Pitch.id].status} text={advisorStatus[Pitch.id].message} expanded={expanded === 1} closeChat={() => {setExpanded(-1)}} chatParticipants={chatParticipants}/>
             </div>
             <div>
                 <AdvisorCard advisor={Pitch} side='right' onChatClick={handleChatClick} inChat={chatParticipants.indexOf(Pitch) !== -1} chatOpen={expanded !== -1}/>
@@ -47,10 +47,10 @@ const Advisors = ({advisorStatus}: {advisorStatus: Record<string, AdvisorStatus>
                 <AdvisorCard advisor={Dev} side='left' onChatClick={handleChatClick} inChat={chatParticipants.indexOf(Dev) !== -1} chatOpen={expanded !== -1}/>
             </div>
             <div className={expanded === -1 ? "col-span-3" : expanded === 2 ? "col-start-2 row-start-1 row-span-2 col-span-6" : "hidden" }>
-                <AdvisorSpeechBubble status={advisorStatus[Dev.id].status} text={advisorStatus[Dev.id].message} expanded={expanded === 2} closeChat={() => {setExpanded(-1)}} chatParticipants={chatParticipants}/>
+                <AdvisorSpeechBubble pitch={pitch} chatMessages={chatMessages} setChatMessages={setChatMessages} status={advisorStatus[Dev.id].status} text={advisorStatus[Dev.id].message} expanded={expanded === 2} closeChat={() => {setExpanded(-1)}} chatParticipants={chatParticipants}/>
             </div>
             <div className={expanded === -1 ? "col-span-3" : expanded === 3 ? "col-start-2 row-start-1 row-span-2 col-span-6" : "hidden" }>
-                <AdvisorSpeechBubble status={advisorStatus[Market.id].status} text={advisorStatus[Market.id].message} expanded={expanded === 3} closeChat={() => {setExpanded(-1)}} chatParticipants={chatParticipants}/>
+                <AdvisorSpeechBubble pitch={pitch} chatMessages={chatMessages} setChatMessages={setChatMessages} status={advisorStatus[Market.id].status} text={advisorStatus[Market.id].message} expanded={expanded === 3} closeChat={() => {setExpanded(-1)}} chatParticipants={chatParticipants}/>
             </div>
             <div>
                 <AdvisorCard advisor={Market} side='right' onChatClick={handleChatClick} inChat={chatParticipants.indexOf(Market) !== -1} chatOpen={expanded !== -1}/>

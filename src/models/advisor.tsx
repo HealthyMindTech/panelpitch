@@ -62,7 +62,7 @@ const Pitch : Advisor = {
     name: "Susie",
     role: "Pitch Expert",
     id: "susie_pitch",
-    description: "Susie a pitch expert",
+    description: "Susie is a pitch expert",
     imageUrl: "advisors/pitch.png",
     introductionForPitchJudgement: "You are Susie, a pitch expert.",
     initialPrompt: `Susie is a pitch expert who has helped many startups pitch their ideas to investors.

@@ -4,8 +4,8 @@ import { Advisor, AdvisorStatus } from '../models/advisor';
 import { queryAdvisors } from '../services/openai';
 
 type SetAdvisorStatusType = React.Dispatch<React.SetStateAction<Record<string, AdvisorStatus>>>;
-
-const PitchForm = ({advisors, setAdvisorStatus}: { advisors: Array<Advisor>, setAdvisorStatus: SetAdvisorStatusType }): JSX.Element => {
+type SetGlobalPitchType = React.Dispatch<React.SetStateAction<string>>;
+const PitchForm = ({advisors, setAdvisorStatus, setGlobalPitch }: { advisors: Array<Advisor>, setAdvisorStatus: SetAdvisorStatusType, setGlobalPitch: SetGlobalPitchType}): JSX.Element => {
     const [pitch, setPitch] = React.useState<string>("");
 
     const handlePitchChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -17,6 +17,8 @@ const PitchForm = ({advisors, setAdvisorStatus}: { advisors: Array<Advisor>, set
         if (pitch === "") {
             return;
         }
+
+        setGlobalPitch(pitch);
 
         const handleAdvisor = (advisor: Advisor, response: string) => {
             setAdvisorStatus((prevAdvisorStatus) => {
@@ -48,7 +50,7 @@ const PitchForm = ({advisors, setAdvisorStatus}: { advisors: Array<Advisor>, set
 
         queryAdvisors(advisors, pitch, handleAdvisor);
         
-    }, [pitch, advisors, setAdvisorStatus]);
+    }, [pitch, advisors, setAdvisorStatus, setGlobalPitch]);
     
 
     return (

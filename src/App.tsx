@@ -51,6 +51,7 @@ function ProjectInfoModal(props: { show: boolean, onHide: () => void }) {
 function App() {
   const [advisorStatus, setAdvisorStatus] = React.useState<Record<string, AdvisorStatus>>(INITIAL_ADVISOR_STATUS);
   const [showProjectInfoModal, setShowProjectInfoModal] = React.useState(false);
+  const [globalPitch, setGlobalPitch] = React.useState<string>('');
 
   return (
     <div className="App">
@@ -71,8 +72,8 @@ function App() {
           </div>
           <Button style={{width: '28px'}} variant="secondary" size="sm" className="text-sm rounded-circle" onClick={() => setShowProjectInfoModal(true)}>?</Button>
         </div>
-        <Advisors advisorStatus={advisorStatus} />
-        <PitchForm advisors={ADVISORS} setAdvisorStatus={setAdvisorStatus} />
+        <Advisors pitch={globalPitch} advisorStatus={advisorStatus} />
+        <PitchForm advisors={ADVISORS} setGlobalPitch={setGlobalPitch} setAdvisorStatus={setAdvisorStatus} />
         <ProjectInfoModal show={showProjectInfoModal} onHide={() => setShowProjectInfoModal(false)} />
       </Container>
     </div>

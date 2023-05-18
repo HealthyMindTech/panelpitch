@@ -5,7 +5,7 @@ const OPENAI_SERVICE = "https://xzvf4ed573.execute-api.us-east-1.amazonaws.com/p
 async function queryOpenAI(prompt: string, stopWords?: Array<string>): Promise<string> {
     let append = "";
     if (stopWords) {
-        append += stopWords.map(word => `stop=${encodeURIComponent(word)}`).join("&")
+        append += '&' + stopWords.map(word => `stop=${encodeURIComponent(word)}`).join("&")
     }
     return fetch(OPENAI_SERVICE + "?temperature=1.2&max_tokens=2048&prompt=" + encodeURIComponent(prompt) + append)
         .then(response => response.json())
@@ -26,35 +26,42 @@ function queryAdvisors(advisors: Array<Advisor>, prompt: string, handleAdvisor: 
     });
 }
 
-function chatQuery(activeAdvisors: Array<Advisor>, pitch: string, charTilNow: Array<ChatMessage>, selectedAdvisorId?: string): Promise<string> {
+async function chatQuery(activeAdvisors: Array<Advisor>, pitch: string, charTilNow: Array<ChatMessage>, selectedAdvisorId?: string): Promise<ChatMessage> {
     if (activeAdvisors.length === 0) {
         activeAdvisors = ADVISORS;
     }
-    const prompt = chatPrompt(activeAdvisors, pitch, charTilNow, selectedAdvisorId);
-    const stopWords = ADVISORS.map(advisor => "[${advisor.description]");
-    return queryOpenAI(prompt, ["[USER]", "[SYSTEM]", ...stopWords]);
-}
-
-function chatPrompt(activeAdvisors: Array<Advisor>, pitch: string, chatTilNow: Array<ChatMessage>, selectedAdvisorId?: string) {
-    if (activeAdvisors.length === 0) {
-        activeAdvisors = ADVISORS;
-    }
-    const pitchMsg = `[SYSTEM]: The user has given the following pitch: ${pitch}`;
-    const advisorInfo = activeAdvisors.map(advisor => `[SYSTEM]: ${advisor.initialPrompt}`).join("\n");
-    const activeUsers = activeAdvisors.map(advisor => `[SYSTEM]: ${advisor.description} is active`).join("\n");
-    const currentChat = chatTilNow.map(message => {
-        if (message.advisorId === USER_ID) {
-            return `[USER]: ${message.message}`
-        } else {
-            return `[${ADVISOR_MAP[message.advisorId].description}]: ${message.message}`
-        }
-    }).join("\n");
-
     let selectedAdvisor  = activeAdvisors.find(advisor => advisor.id === selectedAdvisorId);
     if (selectedAdvisor === undefined) {
         selectedAdvisor = activeAdvisors[Math.floor(Math.random() * activeAdvisors.length)];
     }
-    return `${pitchMsg}\n\n${advisorInfo}\n\n${currentChat}\n\n${activeUsers}\n\n[selectedAdvisor.description]: `;
+    
+    const prompt = chatPrompt(activeAdvisors, pitch, charTilNow, selectedAdvisor.id);
+    const response = await queryOpenAI(prompt, ["[USER]", "[SYSTEM]"]);
+    return {
+        advisorId: selectedAdvisor.id,
+        message: response
+    };
+}
+
+function chatPrompt(activeAdvisors: Array<Advisor>, pitch: string, chatTilNow: Array<ChatMessage>, selectedAdvisorId: string) {
+    if (activeAdvisors.length === 0) {
+        activeAdvisors = ADVISORS;
+    }
+    const pitchMsg = `[SYSTEM]: The user has given the following pitch: ${pitch}`;
+    
+    const advisorInfo = activeAdvisors.map(advisor => `[SYSTEM]: ${advisor.initialPrompt}`).join("\n");
+    const activeUsers = activeAdvisors.map(advisor => `[SYSTEM]: ${advisor.name} is active`).join("\n");
+    const advisorStatus = activeAdvisors.map(advisor => `[SYSTEM]: ${advisor.name} is here to give advice on the pitch.`).join("\n");
+    const currentChat = chatTilNow.map(message => {
+        if (message.advisorId === USER_ID) {
+            return `[USER]: ${message.message}`
+        } else {
+            return `[${ADVISOR_MAP[message.advisorId].name}]: ${message.message}`
+        }
+    }).join("\n");
+
+    const selectedAdvisor = ADVISOR_MAP[selectedAdvisorId];
+    return `${pitchMsg}\n${advisorInfo}\n${activeUsers}\n${advisorStatus}\n${currentChat}\n[${selectedAdvisor.name}]: `;
 }
 
 
