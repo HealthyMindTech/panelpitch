@@ -4,13 +4,10 @@ import { Advisor } from '../models/advisor';
 
 const AdvisorCard = ({advisor} : { advisor: Advisor}) : JSX.Element => {
     return (
-        <Card>
-            <Card.Header>{advisor.name}</Card.Header>
-            { advisor.imageUrl && <Card.Img height={100} width={100} variant="top" src={advisor.imageUrl} /> }
-            <Card.Body>
-                <Card.Text>Hello there</Card.Text>
-            </Card.Body>
-        </Card>
+        <div className='p-2 rounded-lg' style={{background: advisor.bgColor}}>
+            <img src={advisor.imageUrl} alt={advisor.name} className="max-h-60"/>
+            <div className="font-semibold text-center">{advisor.name}</div>
+        </div>
     );
 }
 
