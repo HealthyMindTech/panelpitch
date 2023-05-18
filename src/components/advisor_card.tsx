@@ -3,7 +3,7 @@ import { Advisor } from '../models/advisor';
 
 const AdvisorCard = ({advisor, side, onChatClick} : { advisor: Advisor, side: 'left' | 'right', onChatClick: (advisor: Advisor) => void}) : JSX.Element => {
     return (
-        <div className='p-2 rounded-2xl flex flex-col' style={{background: advisor.bgColor, width: '120px', minWidth: '120px'}}>
+        <div className='p-2 rounded-2xl flex flex-col mx-auto' style={{background: advisor.bgColor, width: '120px', minWidth: '120px'}}>
             
             <div className="">
                 <img src={advisor.imageUrl} alt={advisor.name} className="h-100 aspect-auto mx-auto" style={{width: 64}}/>
