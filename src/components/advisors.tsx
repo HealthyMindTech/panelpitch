@@ -15,7 +15,7 @@ const Advisors = () : JSX.Element => {
 
     useEffect(() => {
         if (gridRef.current) {
-            wrapGrid(gridRef.current, { duration: 800 });
+            // wrapGrid(gridRef.current, { duration: 800 });
         }
     }, [gridRef.current]);
 
