@@ -1,8 +1,8 @@
 import * as iam from 'aws-cdk-lib/aws-iam';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
 import * as apigateway from 'aws-cdk-lib/aws-apigateway';
-import { Stack, StackProps } from 'aws-cdk-lib';
-import { Construct } from 'constructs';
+import { Stack, StackProps, Duration } from 'aws-cdk-lib';
+import { Construct  } from 'constructs';
 
 export class LambdaStack extends Stack {
     constructor(scope: Construct, id: string, props?: StackProps) {
@@ -30,6 +30,7 @@ export class LambdaStack extends Stack {
                 code: asset,
                 handler: 'app.generateCompletion',
                 role: lambdaRole,
+                timeout: Duration.seconds(60),
             });
 
 
