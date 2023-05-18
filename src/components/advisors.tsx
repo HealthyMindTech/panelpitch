@@ -29,7 +29,7 @@ const Advisors = ({advisorStatus}: {advisorStatus: Record<string, AdvisorStatus>
     }
 
     return (
-        <div className="grid grid-cols-8 gap-y-6" style={{maxHeight: '400px'}} ref={gridRef}>
+        <div className="grid grid-cols-8 gap-y-6" style={{maxHeight: '430px'}} ref={gridRef}>
             <div className="">
                 <AdvisorCard advisor={UX} side='left' onChatClick={handleChatClick} inChat={chatParticipants.indexOf(UX) !== -1} chatOpen={expanded !== -1}/>
             </div>
