@@ -59,11 +59,10 @@ const PitchForm = ({advisors, setAdvisorStatus}: { advisors: Array<Advisor>, set
             />
             <div className="flex justify-center h-60 items-center absolute top-0 w-100 pointer-events-none">
                 {/* Hide when there is a pitch value */}
-                {pitch === "" && (
-                    <div className="">
-                        Start typing your pitch here!
-                    </div>
-                )}
+                <div className={`flex flex-col items-center transition-opacity ${pitch !== "" ? 'opacity-0' : ''}`}>
+                    <img src="pitcher.png" style={{height: '100px', width: '100px'}}></img>
+                    <div>Start typing your pitch here!</div>
+                </div>
             </div>
         </Form.Group>
         <Button variant="primary" type="submit">
