@@ -14,7 +14,7 @@ const AdvisorCard = ({advisor, side, onChatClick} : { advisor: Advisor, side: 'l
                 </div>
             </div>
             <div className="h-64">
-                <img src={advisor.imageUrl} alt={advisor.name} className="h-100 aspect-auto" style={{width: 81}}/>
+                <img src={advisor.imageUrl} alt={advisor.name} className="h-100 aspect-auto  mx-auto" style={{width: 64}}/>
             </div>
             <div className="font-semibold text-center">{advisor.name}</div>
         </div>
