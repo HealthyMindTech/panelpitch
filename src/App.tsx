@@ -26,10 +26,12 @@ function App() {
             <AdvisorSection advisor={NarcissisticCEO} side='right' />
           </Col>
         </Row>
-        <Form className="b-0 flex-grow">
+        <Form className="b-0 flex-grow border-x border-y border-gray-300 rounded-2xl p-2 px-4">
           <Form.Group className="mb-3 relative" controlId="pitch">
-            {/* <Form.Label>Your pitch</Form.Label> */}
-            <div className="flex justify-center h-80 items-center">
+            <Form.Control as="textarea" rows={10} className="" 
+                value={pitch} onChange={handlePitchChange}
+              />
+            <div className="flex justify-center h-60 items-center absolute top-0 w-100">
               {/* Hide when there is a pitch value */}
               {pitch === "" && (
                 <div className="">
@@ -37,10 +39,11 @@ function App() {
                 </div>
                 )}
             </div>
-            <Form.Control as="textarea" rows={10} className="absolute top-0 bg-transparent" 
-              value={pitch} onChange={handlePitchChange}
-            />
+            
           </Form.Group>
+          <div className="flex justify-end mt-4">
+            <button className="bg-blue-500 rounded-xl text-white p-2 pt-0"><span className="material-symbols-outlined relative top-1.5 mr-1">send</span>Submit</button>
+          </div>
         </Form>
       </Container>
     </div>
