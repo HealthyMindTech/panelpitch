@@ -6,11 +6,18 @@ import { ADVISORS, AdvisorStatus } from './models/advisor';
 import './App.scss';
 import { Button, Modal } from 'react-bootstrap';
 
-const INITIAL_ADVISOR_STATUS: Record<string, AdvisorStatus> = Object.fromEntries(ADVISORS.map<[string, AdvisorStatus]>((advisor) => {
+const INFO_MESSAGES = [
+  "Enter your pitch below, and we'll give you inmediate, actionable feedback.",
+  "We are a group of experts in different domains, and want to help you bring your next big idea to life!",
+  "We're looking forward to seeing your pitch!",
+  "We'll look at your pitch from different angles: business, technical, design and overall pitch.",
+];
+
+const INITIAL_ADVISOR_STATUS: Record<string, AdvisorStatus> = Object.fromEntries(ADVISORS.map<[string, AdvisorStatus]>((advisor, index) => {
   return [advisor.id, {
     status: 'ready',
     advisorId: advisor.id,
-    message: `Hi, I'm ${advisor.name}! How can I help you?`,
+    message: `Hi, I'm ${advisor.name}! ${INFO_MESSAGES[index]}`,
   }]
 }));
 
