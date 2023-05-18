@@ -1,15 +1,16 @@
 import { useRef, useEffect } from 'react';
-import { ChatMessage, Advisor, USER_ID, ADVISOR_MAP } from '../models/advisor';
+import { ChatMessage, Advisor, USER_ID, ADVISOR_MAP, AdvisorStatus } from '../models/advisor';
 import { chatQuery } from '../services/openai';
 
 interface ChatArgs {
     setChatMessages: React.Dispatch<React.SetStateAction<ChatMessage[]>>, 
     chatParticipants: Advisor[], 
     chatMessages: ChatMessage[],
-    pitch: string
+    pitch: string,
+    advisorStatus: Record<string, AdvisorStatus>
 }
 
-const Chat = ({ chatParticipants, chatMessages, setChatMessages, pitch } : ChatArgs): JSX.Element => {
+const Chat = ({ chatParticipants, chatMessages, setChatMessages, pitch, advisorStatus } : ChatArgs): JSX.Element => {
     const chatRef = useRef<HTMLDivElement>(null);
     const chatMessageRef = useRef<HTMLInputElement>(null);
     
@@ -22,20 +23,18 @@ const Chat = ({ chatParticipants, chatMessages, setChatMessages, pitch } : ChatA
     }, [chatMessages]);
 
     useEffect(() => {
-        console.log(chatMessages);
         if (chatMessages.length === 0) {
             return;
         } else if (chatMessages[chatMessages.length - 1].advisorId !== USER_ID) {
             return;
         }
 
-        console.log("Hello")
-        chatQuery(chatParticipants, pitch, chatMessages, pitch).then((response) => {
+        chatQuery(chatParticipants, pitch, chatMessages, advisorStatus).then((response) => {
             setChatMessages((prevMessages) => {
                 return [...prevMessages, response];
             });
         });
-    }, [chatMessages, chatParticipants, pitch, setChatMessages]);
+    }, [chatMessages, chatParticipants, pitch, setChatMessages, advisorStatus]);
 
     const submitChatMessage = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -66,6 +65,23 @@ const Chat = ({ chatParticipants, chatMessages, setChatMessages, pitch } : ChatA
             {/* If its from the advisors, put on left, if its user, right. */}
             <div className="flex justify-center w-100 flex-grow overflow-y-auto">
                 <div className="bg-gray-100 rounded-xl p-2 px-4 w-100 overflow-y-auto h-full border-x border-y border-gray-300">
+                    {chatParticipants.map((advisor, index) => {
+                        const message = advisorStatus[advisor.id].message;
+                        if (message === undefined || message === null || message === "" || advisorStatus[advisor.id].status !== 'ready') {
+                            return <></>;
+                        }
+                        return (
+                            <div className="flex justify-start mb-2" key={`intro-${index}`}>
+                                <div className="flex flex-col justify-center items-center mr-2">
+                                    <img src={advisor.imageUrl} alt={advisor.name} className="rounded-full w-10 h-10" />
+                                    <div className="text-xs align-center font-semibold" >{advisor.name}</div>
+                                </div>
+                                <div className="bg-gray-200 rounded-xl p-2 px-4">
+                                    {message}
+                                </div>
+                            </div>
+                        );
+                    })}
                     {chatMessages.map((message, index) => {
                         if (message.advisorId === USER_ID) {
                             return (

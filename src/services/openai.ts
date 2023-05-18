@@ -1,4 +1,4 @@
-import { ADVISORS, ADVISOR_MAP, Advisor, ChatMessage, USER_ID } from "../models/advisor";
+import { ADVISORS, ADVISOR_MAP, Advisor, AdvisorStatus, ChatMessage, USER_ID } from "../models/advisor";
 
 const OPENAI_SERVICE = "https://xzvf4ed573.execute-api.us-east-1.amazonaws.com/prod/completion"
 
@@ -26,7 +26,7 @@ function queryAdvisors(advisors: Array<Advisor>, prompt: string, handleAdvisor: 
     });
 }
 
-async function chatQuery(activeAdvisors: Array<Advisor>, pitch: string, charTilNow: Array<ChatMessage>, selectedAdvisorId?: string): Promise<ChatMessage> {
+async function chatQuery(activeAdvisors: Array<Advisor>, pitch: string, charTilNow: Array<ChatMessage>, advisorStatus: Record<string, AdvisorStatus>, selectedAdvisorId?: string): Promise<ChatMessage> {
     if (activeAdvisors.length === 0) {
         activeAdvisors = ADVISORS;
     }
@@ -35,7 +35,7 @@ async function chatQuery(activeAdvisors: Array<Advisor>, pitch: string, charTilN
         selectedAdvisor = activeAdvisors[Math.floor(Math.random() * activeAdvisors.length)];
     }
     
-    const prompt = chatPrompt(activeAdvisors, pitch, charTilNow, selectedAdvisor.id);
+    const prompt = chatPrompt(activeAdvisors, pitch, charTilNow, advisorStatus, selectedAdvisor.id);
     const response = await queryOpenAI(prompt, ["[USER]", "[SYSTEM]"]);
     return {
         advisorId: selectedAdvisor.id,
@@ -43,15 +43,24 @@ async function chatQuery(activeAdvisors: Array<Advisor>, pitch: string, charTilN
     };
 }
 
-function chatPrompt(activeAdvisors: Array<Advisor>, pitch: string, chatTilNow: Array<ChatMessage>, selectedAdvisorId: string) {
+function chatPrompt(activeAdvisors: Array<Advisor>, pitch: string, chatTilNow: Array<ChatMessage>, advisorStatus: Record<string, AdvisorStatus>, selectedAdvisorId: string) {
     if (activeAdvisors.length === 0) {
         activeAdvisors = ADVISORS;
     }
-    const pitchMsg = `[SYSTEM]: The user has given the following pitch: ${pitch}`;
+    const pitchMsg = `[SYSTEM]: The user has given the following pitch to the hackathon advisory board.\n ${pitch}`;
     
     const advisorInfo = activeAdvisors.map(advisor => `[SYSTEM]: ${advisor.initialPrompt}`).join("\n");
     const activeUsers = activeAdvisors.map(advisor => `[SYSTEM]: ${advisor.name} is active`).join("\n");
-    const advisorStatus = activeAdvisors.map(advisor => `[SYSTEM]: ${advisor.name} is here to give advice on the pitch.`).join("\n");
+    const advisorStatusMsg = activeAdvisors.map(advisor => `[SYSTEM]: ${advisor.name} is here to give advice on the pitch.`).join("\n");
+    const introChat = activeAdvisors.map(advisor => {
+        const status = advisorStatus[advisor.id];
+        let message = status.message;
+        if (status.status !== "ready" || message === undefined || message === "" || message === null) {
+            message = "Great pitch, btw."
+        }
+        return `[${advisor.name}]: ${message}`
+    }).join("\n");
+
     const currentChat = chatTilNow.map(message => {
         if (message.advisorId === USER_ID) {
             return `[USER]: ${message.message}`
@@ -61,7 +70,7 @@ function chatPrompt(activeAdvisors: Array<Advisor>, pitch: string, chatTilNow: A
     }).join("\n");
 
     const selectedAdvisor = ADVISOR_MAP[selectedAdvisorId];
-    return `${pitchMsg}\n${advisorInfo}\n${activeUsers}\n${advisorStatus}\n${currentChat}\n[${selectedAdvisor.name}]: `;
+    return `${pitchMsg}\n${advisorInfo}\n${activeUsers}\n${advisorStatusMsg}\n${introChat}\n${currentChat}\n[${selectedAdvisor.name}]: `;
 }
 
 

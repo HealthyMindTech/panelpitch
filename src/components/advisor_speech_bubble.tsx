@@ -1,6 +1,6 @@
 import './advisor_speech_bubble.css';
 import { Chat } from './chat';
-import { Advisor, ChatMessage } from '../models/advisor';
+import { Advisor, AdvisorStatus, ChatMessage } from '../models/advisor';
 import Spinner from 'react-bootstrap/Spinner';
 
 interface AdvisorSpeechBubbleProps {
@@ -11,8 +11,8 @@ interface AdvisorSpeechBubbleProps {
     chatMessages: ChatMessage[];
     status: 'ready' | 'loading' | 'error';
     setChatMessages: React.Dispatch<React.SetStateAction<ChatMessage[]>>,
-    pitch: string
-
+    pitch: string,
+    advisorStatus: Record<string, AdvisorStatus>
 }
 
 const expandedText = (text: string, status: 'ready' | 'loading' | 'error'): JSX.Element => {
@@ -23,7 +23,7 @@ const expandedText = (text: string, status: 'ready' | 'loading' | 'error'): JSX.
     }
     return <>{text}</>;
 }
-const AdvisorSpeechBubble = ({ status, text, expanded, pitch, closeChat, chatParticipants, chatMessages, setChatMessages }: AdvisorSpeechBubbleProps): JSX.Element => {
+const AdvisorSpeechBubble = ({ advisorStatus, status, text, expanded, pitch, closeChat, chatParticipants, chatMessages, setChatMessages }: AdvisorSpeechBubbleProps): JSX.Element => {
     return (
         <div className="h-full" style={{maxHeight: expanded ? '370px' : '197px'}}>
             <div
@@ -31,7 +31,7 @@ const AdvisorSpeechBubble = ({ status, text, expanded, pitch, closeChat, chatPar
             >   
                 {expanded}
                 {!expanded && expandedText(text, status)}
-                {expanded && <Chat pitch={pitch} chatMessages={chatMessages} setChatMessages={setChatMessages} chatParticipants={chatParticipants} />}
+                {expanded && <Chat advisorStatus={advisorStatus} pitch={pitch} chatMessages={chatMessages} setChatMessages={setChatMessages} chatParticipants={chatParticipants} />}
             </div>
         </div>
     );

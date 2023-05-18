@@ -41,7 +41,7 @@ const PitchForm = ({advisors, setAdvisorStatus, setGlobalPitch }: { advisors: Ar
                     newAdvisorStatus[advisor.id] = {
                         status: 'loading',
                         advisorId: advisor.id,
-                        message: prevAdvisorStatus[advisor.id].message,
+                        message: "I'm thinking....",
                     };
                 }
                 return newAdvisorStatus;
@@ -62,7 +62,7 @@ const PitchForm = ({advisors, setAdvisorStatus, setGlobalPitch }: { advisors: Ar
             <div className="flex justify-center h-60 items-center absolute top-0 w-100 pointer-events-none">
                 {/* Hide when there is a pitch value */}
                 <div className={`flex flex-col items-center transition-opacity ${pitch !== "" ? 'opacity-0' : ''}`}>
-                    <img src="pitcher.png" style={{height: '100px', width: '100px'}}></img>
+                    <img src="pitcher.png" style={{height: '100px', width: '100px'}} alt=""></img>
                     <div>Start typing your pitch here!</div>
                 </div>
             </div>
