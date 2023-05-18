@@ -31,7 +31,7 @@ function App() {
             <Form.Control as="textarea" rows={10} className="" 
                 value={pitch} onChange={handlePitchChange}
               />
-            <div className="flex justify-center h-60 items-center absolute top-0 w-100">
+            <div className="flex justify-center h-60 items-center absolute top-0 w-100 pointer-events-none">
               {/* Hide when there is a pitch value */}
               {pitch === "" && (
                 <div className="">
