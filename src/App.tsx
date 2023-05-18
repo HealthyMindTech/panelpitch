@@ -4,7 +4,7 @@ import { Advisors } from './components/advisors';
 import { PitchForm } from './components/pitch';
 import { ADVISORS, AdvisorStatus } from './models/advisor';
 import './App.scss';
-import { Button } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 
 const INITIAL_ADVISOR_STATUS: Record<string, AdvisorStatus> = Object.fromEntries(ADVISORS.map<[string, AdvisorStatus]>((advisor) => {
   return [advisor.id, {
@@ -14,8 +14,25 @@ const INITIAL_ADVISOR_STATUS: Record<string, AdvisorStatus> = Object.fromEntries
   }]
 }));
 
+function ProjectInfoModal(props: { show: boolean, onHide: () => void }) {
+  return (
+    <Modal show={props.show} onHide={props.onHide}>
+      <Modal.Header closeButton>
+        <Modal.Title>Project Information</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <p>This is a hackathon project!</p>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={props.onHide}>Close</Button>
+      </Modal.Footer>
+    </Modal>
+  );
+}
+
 function App() {
   const [advisorStatus, setAdvisorStatus] = React.useState<Record<string, AdvisorStatus>>(INITIAL_ADVISOR_STATUS);
+  const [showProjectInfoModal, setShowProjectInfoModal] = React.useState(false);
 
   return (
     <div className="App">
@@ -34,10 +51,11 @@ function App() {
             </span>
             
           </div>
-          <Button variant="primary" size="sm" className="text-sm">info</Button>
+          <Button variant="secondary" size="sm" className="text-sm rounded-circle" onClick={() => setShowProjectInfoModal(true)}>?</Button>
         </div>
         <Advisors advisorStatus={advisorStatus} />
         <PitchForm advisors={ADVISORS} setAdvisorStatus={setAdvisorStatus} />
+        <ProjectInfoModal show={showProjectInfoModal} onHide={() => setShowProjectInfoModal(false)} />
       </Container>
     </div>
   );
