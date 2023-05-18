@@ -1,6 +1,4 @@
-import React from 'react';
-import Card from 'react-bootstrap/Card';
-import { Advisor, NarcissisticCEO } from '../models/advisor';
+import { NarcissisticCEO } from '../models/advisor';
 
 const testMessages = [
     {
