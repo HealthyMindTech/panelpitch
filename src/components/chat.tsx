@@ -62,7 +62,7 @@ const Chat = ({ chatParticipants } : { chatParticipants: Advisor[] }): JSX.Eleme
                     Participant names:
                     {chatParticipants.map((participant) => {
                         return (
-                            <span>{participant.name}</span>
+                            <span key={participant.name}>{participant.name}</span>
                         );
                     })}
 
@@ -72,10 +72,10 @@ const Chat = ({ chatParticipants } : { chatParticipants: Advisor[] }): JSX.Eleme
             {/* If its from the advisors, put on left, if its user, right. */}
             <div className="flex justify-center w-100 flex-grow overflow-y-auto">
                 <div className="bg-gray-100 rounded-xl p-2 px-4 w-100 overflow-y-auto h-full">
-                    {testMessages.map((message) => {
+                    {testMessages.map((message, index) => {
                         if (message.user === null) {
                             return (
-                                <div className="flex justify-end">
+                                <div className="flex justify-end" key={message.text + index}>
                                     <div className="bg-blue-500 rounded-xl text-white p-2 px-4">
                                         {message.text}
                                     </div>
@@ -83,7 +83,7 @@ const Chat = ({ chatParticipants } : { chatParticipants: Advisor[] }): JSX.Eleme
                             );
                         } else {
                             return (
-                                <div className="flex justify-start">
+                                <div className="flex justify-start" key={message.text + index}>
                                     <div className="bg-gray-200 rounded-xl p-2 px-4">
                                         {message.text}
                                     </div>

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useRef, useEffect }  from 'react';
+import { wrapGrid } from 'animate-css-grid'
 import { Advisor } from '../models/advisor';
 import { UX, Market, Dev, Pitch } from '../models/advisor';
 import { AdvisorCard } from './advisor_card';
@@ -9,6 +10,14 @@ const Advisors = () : JSX.Element => {
     // Which of the chats are expanded
     const [expanded, setExpanded] = React.useState<number>(-1); // -1 means no chat is expanded
     const [chatParticipants, setChatParticipants] = React.useState<Advisor[]>([]);
+
+    const gridRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (gridRef.current) {
+            wrapGrid(gridRef.current, { duration: 800 });
+        }
+    }, [gridRef.current]);
 
     const advisors = [UX, Market, Dev, Pitch];
 
@@ -27,15 +36,15 @@ const Advisors = () : JSX.Element => {
     }
 
     return (
-        <div className="grid grid-cols-8" style={{maxHeight: '370px'}}>
+        <div className="grid grid-cols-8" style={{maxHeight: '370px'}} ref={gridRef}>
             <div>
                 <AdvisorCard advisor={UX} side='left' onChatClick={handleChatClick} />
             </div>
             {/* if collapsed: 1x5, if expanded, 2x10 */}
-            <div className={(expanded === -1 ? "col-span-3" : expanded === 0 ? "col-start-2 row-start-1 row-span-2 col-span-6" : "hidden") + " transition-all duration-300" }>
+            <div className={expanded === -1 ? "col-span-3" : expanded === 0 ? "col-start-2 row-start-1 row-span-2 col-span-6" : "hidden"}>
                 <AdvisorSpeechBubble text="Hello" expanded={expanded === 0} closeChat={() => {setExpanded(-1)}} chatParticipants={chatParticipants}/>
             </div>
-            <div className={expanded === -1 ? "col-span-3" : expanded === 1 ? "col-start-2 row-start-1 row-span-2 col-span-6" : "hidden" }>
+            <div className={expanded === -1 ? "col-span-3" : expanded === 1 ? "col-start-2 row-start-1 row-span-2 col-span-6" : "hidden"}>
                 <AdvisorSpeechBubble text="Hello" expanded={expanded === 1} closeChat={() => {setExpanded(-1)}} chatParticipants={chatParticipants}/>
             </div>
             <div>
@@ -44,10 +53,10 @@ const Advisors = () : JSX.Element => {
             <div>
                 <AdvisorCard advisor={Dev} side='left' onChatClick={handleChatClick} />
             </div>
-            <div className={expanded === -1 ? "col-span-3" : expanded === 2 ? "col-start-2 row-start-1 row-span-2 col-span-6" : "hidden" }>
+            <div className={expanded === -1 ? "col-span-3" : expanded === 2 ? "col-start-2 row-start-1 row-span-2 col-span-6" : "hidden"}>
                 <AdvisorSpeechBubble text="Hello" expanded={expanded === 2} closeChat={() => {setExpanded(-1)}} chatParticipants={chatParticipants}/>
             </div>
-            <div className={expanded === -1 ? "col-span-3" : expanded === 3 ? "col-start-2 row-start-1 row-span-2 col-span-6" : "hidden" }>
+            <div className={expanded === -1 ? "col-span-3" : expanded === 3 ? "col-start-2 row-start-1 row-span-2 col-span-6" : "hidden"}>
                 <AdvisorSpeechBubble text="Hello" expanded={expanded === 3} closeChat={() => {setExpanded(-1)}} chatParticipants={chatParticipants}/>
             </div>
             <div>
