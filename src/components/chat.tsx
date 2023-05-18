@@ -1,3 +1,4 @@
+import { useRef, useEffect } from 'react';
 import { Advisor, NarcissisticCEO } from '../models/advisor';
 
 const testMessages = [
@@ -54,6 +55,16 @@ const testMessages = [
 
 
 const Chat = ({ chatParticipants } : { chatParticipants: Advisor[] }): JSX.Element => {
+    const chatRef = useRef<HTMLDivElement>(null);
+
+    const scrollToBottom = () => {
+        chatRef.current?.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
+    }
+
+    useEffect(() => {
+        scrollToBottom();
+    }, []);
+
     return (
         <div className="w-100 flex flex-col h-full space-y-4 px-2 pb-2">
             <div className="flex justify-center">
@@ -90,6 +101,9 @@ const Chat = ({ chatParticipants } : { chatParticipants: Advisor[] }): JSX.Eleme
                             );
                         }
                     })}
+                    <div style={{ float:"left", clear: "both" }}
+                        ref={chatRef}>
+                    </div>
                 </div>
             </div>
             {/* Chat input area */}
