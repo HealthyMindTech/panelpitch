@@ -1,7 +1,6 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Row, Col, Form } from 'react-bootstrap';
 import { AdvisorCard } from './components/advisor_card';
 import { NarcissisticCEO } from './models/advisor';
 import './App.scss';
@@ -16,7 +15,12 @@ function App() {
             <AdvisorCard advisor={NarcissisticCEO} />
           </Col>
           <Col xs={6}>
-            Hello
+          <Form>
+            <Form.Group className="mb-3" controlId="pitch">
+              <Form.Label>Your pitch</Form.Label>
+              <Form.Control as="textarea" rows={20} />
+            </Form.Group>
+            </Form>
           </Col>
           <Col xs={3}>
             <AdvisorCard advisor={NarcissisticCEO} />
