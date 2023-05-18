@@ -12,9 +12,9 @@ interface AdvisorSpeechBubbleProps {
 
 const AdvisorSpeechBubble = ({ text, expanded, closeChat, chatParticipants }: AdvisorSpeechBubbleProps): JSX.Element => {
     return (
-        <div className="h-full" style={{maxHeight: '370px'}}>
+        <div className="h-full" style={{maxHeight: expanded ? '370px' : '182px'}}>
             <div
-                className={`border-x border-y rounded-2xl border-gray-300 bg-white mx-2 p-2 AdvisorSpeechBubble h-full z-20`}
+                className={`border-x border-y rounded-2xl border-gray-300 bg-white mx-2 p-2 AdvisorSpeechBubble h-full z-20 ${!expanded && 'overflow-y-auto'}`}
             >   
                 {expanded}
                 {!expanded && text}
