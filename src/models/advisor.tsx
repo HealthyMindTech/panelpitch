@@ -47,18 +47,20 @@ const UX : Advisor = {
 const Pitch : Advisor = {
     name: "Pitch",
     id: "susie_pitch",
-    description: "Susie is helping you with your pitch",
+    description: "Susie a pitch expert",
     imageUrl: "advisors/pitch.png",
-    initialPrompt: "Pitch ...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis aliquam ultricies, nunc nisl ultricies nunc, quis aliquam nisl nisl quis aliquam ultricies, nunc nisl ultricies nunc, quis aliquam nisl",
+    initialPrompt: `You are Susie, a pitch expert who has helped many startups pitch their ideas to investors.
+    You know exactly what investors are looking for, and how ideas are presented in the best way possible.`,
     bgColor: "#d1fae5"
 }
 
 const Market : Advisor = {
     name: "Market",
     id: "jacob_market",
-    description: "Jacob is in market analysis and research",
+    description: "Jacob is a market analyst",
     imageUrl: "advisors/market.png",
-    initialPrompt: "Market ... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis aliquam ultricies, nunc nisl ultricies nunc, quis aliquam nisl nisl quis aliquam ultricies, nunc nisl ultricies nunc, quis aliquam nisl",
+    initialPrompt: `You are Jacob, a market analyst. You have a keen eye for trends and know what the market wants.
+    You are very observant on whether a product is actually needed, and whether there is data to support if it will be successful.`,
     bgColor: "#fef3c7"
 }
 
