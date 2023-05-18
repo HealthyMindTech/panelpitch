@@ -2,8 +2,12 @@ import { Advisor } from "../models/advisor";
 
 const OPENAI_SERVICE = "https://xzvf4ed573.execute-api.us-east-1.amazonaws.com/prod/completion"
 
-async function queryOpenAI(prompt: string): Promise<string> {
-    return fetch(OPENAI_SERVICE + "?temperature=1.2&max_tokens=2048&prompt=" + encodeURIComponent(prompt))
+async function queryOpenAI(prompt: string, stopWords?: Array<string>): Promise<string> {
+    let append = "";
+    if (stopWords) {
+        append += stopWords.map(word => `stop=${encodeURIComponent(word)}`).join("&")
+    }
+    return fetch(OPENAI_SERVICE + "?temperature=1.2&max_tokens=2048&prompt=" + encodeURIComponent(prompt) + append)
         .then(response => response.json())
         .then(data => data.choices[0].text);
 }
@@ -22,4 +26,7 @@ function queryAdvisors(advisors: Array<Advisor>, prompt: string, handleAdvisor: 
     });
 }
 
+function chatPrompt(activeAdvisors: Array<Advisor>, pitch: string, chatTilNow: string) {
+    
+}
 export { queryAdvisor, queryAdvisors }
