@@ -1,4 +1,4 @@
-import { Form } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import React from 'react';
 import { Advisor } from '../models/advisor';
 import { queryAdvisors } from '../services/openai';
@@ -11,6 +11,7 @@ const PitchForm = ({advisors}: { advisors: Array<Advisor>}): JSX.Element => {
     };
 
     const onSubmit = React.useCallback((event: React.FormEvent<HTMLFormElement>) => {
+        console.log("Hello");
         event.preventDefault();
         if (pitch === "") {
             return;
@@ -22,7 +23,7 @@ const PitchForm = ({advisors}: { advisors: Array<Advisor>}): JSX.Element => {
     }, [pitch, advisors]);
 
     return (
-    <Form className="b-0 flex-grow border-x border-y border-gray-300 rounded-2xl p-2 px-4" onSubmit={onSubmit}>
+    <Form className="text-right b-0 flex-grow border-x border-y border-gray-300 rounded-2xl p-2 px-4" onSubmit={onSubmit}>
         <Form.Group className="mb-3 relative" controlId="pitch">
             <Form.Control as="textarea" rows={10} autoFocus className=""
                 value={pitch} onChange={handlePitchChange}
@@ -36,9 +37,9 @@ const PitchForm = ({advisors}: { advisors: Array<Advisor>}): JSX.Element => {
                 )}
             </div>
         </Form.Group>
-        <div className="flex justify-end mt-4">
-            <button className="bg-blue-500 rounded-xl text-white p-2 pt-0"><span className="material-symbols-outlined relative top-1.5 mr-1">send</span>Submit</button>
-        </div>
+        <Button variant="primary" type="submit">
+            Pitch to advisors
+      </Button>
     </Form>);
 }
 

@@ -38,7 +38,7 @@ export class LambdaStack extends Stack {
             this,
             'rest-api',
             {
-                restApiName: "halcyon",
+                restApiName: "intellipitch",
                 defaultCorsPreflightOptions: {
                     allowOrigins: apigateway.Cors.ALL_ORIGINS,
                     allowMethods: apigateway.Cors.ALL_METHODS,
