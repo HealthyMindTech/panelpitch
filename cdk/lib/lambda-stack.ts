@@ -3,10 +3,13 @@ import * as lambda from 'aws-cdk-lib/aws-lambda';
 import * as apigateway from 'aws-cdk-lib/aws-apigateway';
 import { Stack, StackProps, Duration } from 'aws-cdk-lib';
 import { Construct  } from 'constructs';
+import * as secretsmanager from 'aws-cdk-lib/aws-secretsmanager';
 
 export class LambdaStack extends Stack {
     constructor(scope: Construct, id: string, props?: StackProps) {
         super(scope, id, props);
+
+        const secret = secretsmanager.Secret.fromSecretNameV2(this, "OPENAI_API_KEY", "OPENAI_API_KEY");
 
         const lambdaRole = new iam.Role(this, 'lambda-role', {
             assumedBy: new iam.ServicePrincipal("lambda.amazonaws.com"),
@@ -31,6 +34,9 @@ export class LambdaStack extends Stack {
                 handler: 'app.generateCompletion',
                 role: lambdaRole,
                 timeout: Duration.seconds(60),
+                environment: {
+                    OPENAI_API_KEY: secret.secretValueFromJson("OPENAI_API_KEY").unsafeUnwrap()
+                }
             });
 
 
